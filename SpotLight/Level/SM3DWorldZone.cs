@@ -57,11 +57,11 @@ namespace Spotlight.Level
 
         public const string COMMON_SUFFIX = ".szs";
 #else
-        public const string MAP_SUFFIX = "Map1.szs";
+        public const string MAP_SUFFIX = ".szs";
         public const string DESIGN_SUFFIX = "Design1.szs";
         public const string SOUND_SUFFIX = "Sound1.szs";
 
-        public const string COMMON_SUFFIX = "1.szs";
+        public const string COMMON_SUFFIX = ".szs";
 #endif
 
         private const string CATEGORY_MAP = "Map";
@@ -368,7 +368,7 @@ namespace Spotlight.Level
 
             byteOrder = sarc.endianness;
 
-            string stageFileName = LevelName + categoryName + ".byml";
+            string stageFileName = LevelName + categoryName + ".byaml";
 
             foreach (KeyValuePair<string, byte[]> fileEntry in sarc.Files)
             {
@@ -438,35 +438,17 @@ namespace Spotlight.Level
 
             byteOrder = sarc.endianness;
 
-            string stageFileNameMap = LevelName + "Map.byml";
-            string stageFileNameDesign = LevelName + "Design.byml";
-            string stageFileNameSound = LevelName + "Sound.byml";
+            string stageFileName = LevelName + ".byaml";
 
             foreach (KeyValuePair<string, byte[]> fileEntry in sarc.Files)
             {
-                if (fileEntry.Key == stageFileNameMap)
+                if (fileEntry.Key == stageFileName)
                 {
                     Dictionary<long, I3dWorldObject> objectsByReference = new Dictionary<long, I3dWorldObject>();
 
                     ByamlIterator byamlIter = new ByamlIterator(new MemoryStream(fileEntry.Value));
                     LoadStageByml(byamlIter, MAP_PREFIX, linkedObjsByID, objectsByReference);
                     HasCategoryMap = true;
-                }
-                else if (fileEntry.Key == stageFileNameDesign)
-                {
-                    Dictionary<long, I3dWorldObject> objectsByReference = new Dictionary<long, I3dWorldObject>();
-
-                    ByamlIterator byamlIter = new ByamlIterator(new MemoryStream(fileEntry.Value));
-                    LoadStageByml(byamlIter, DESIGN_PREFIX, linkedObjsByID, objectsByReference);
-                    HasCategoryDesign = true;
-                }
-                else if (fileEntry.Key == stageFileNameSound)
-                {
-                    Dictionary<long, I3dWorldObject> objectsByReference = new Dictionary<long, I3dWorldObject>();
-
-                    ByamlIterator byamlIter = new ByamlIterator(new MemoryStream(fileEntry.Value));
-                    LoadStageByml(byamlIter, SOUND_PREFIX, linkedObjsByID, objectsByReference);
-                    HasCategorySound = true;
                 }
                 else
                 {
@@ -504,7 +486,7 @@ namespace Spotlight.Level
             foreach (DictionaryEntry entry in byamlIter.IterRootDictionary())
 #endif
             {
-                if (entry.Key == "FilePath" || entry.Key == "Objs")
+                if (entry.Key == "FilePath" || entry.Key == "ObjectList")
                     continue;
 
                 if (entry.Key == "ZoneList")
@@ -679,7 +661,7 @@ namespace Spotlight.Level
             {
                 WriteStageByml(stream, prefix, saveZonePlacements);
 
-                sarcData.Files.Add(LevelName + categoryName + ".byml", stream.ToArray());
+                sarcData.Files.Add(LevelName + categoryName + ".byaml", stream.ToArray());
             }
 
             File.WriteAllBytes(Path.Combine(Directory, LevelName + categoryName + COMMON_SUFFIX), YAZ0.Compress(SARCExt.SARC.PackN(sarcData).Item2));
@@ -725,7 +707,7 @@ namespace Spotlight.Level
                 {
                     WriteStageByml(stream, MAP_PREFIX, true);
 
-                    sarcData.Files.Add(LevelName + "Map.byml", stream.ToArray());
+                    sarcData.Files.Add(LevelName + ".byaml", stream.ToArray());
                 }
             }
 
@@ -907,7 +889,7 @@ namespace Spotlight.Level
 
                     SARCExt.SarcData sarc = SARCExt.SARC.UnpackRamN(YAZ0.Decompress(fileName));
 
-                    string stageFileName = LevelName + categoryName + ".byml";
+                    string stageFileName = LevelName + ".byaml";
 
                     foreach (var (arcFileName, arcFileData) in sarc.Files)
                     {

@@ -174,7 +174,7 @@ namespace Spotlight.Level
         {
             Dictionary<long, ObjectInfo> objectInfosByReference = new Dictionary<long, ObjectInfo>();
 
-            if(sarc.Files.TryGetValue(levelName + categoryName + ".byml", out var data))
+            if(sarc.Files.TryGetValue(levelName  + ".byaml", out var data))
             {
                 ByamlIterator byamlIter = new ByamlIterator(new MemoryStream(data));
 #if ODYSSEY
@@ -301,6 +301,7 @@ namespace Spotlight.Level
                         break;
                     case "UnitConfigName":
                         info.ObjectName = entry.Parse();
+                        info.ClassName = info.ObjectName;
                         break;
                     case "UnitConfig":
                         _data = entry.Parse();

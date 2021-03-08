@@ -1333,9 +1333,6 @@ namespace Spotlight.EditorDrawables
                 SaveFileDialog sfd = new SaveFileDialog()
                 {
                     Filter =
-                    "Level Files (Map)|*Map1.szs|" +
-                    "Level Files (Design)|*Design1.szs|" +
-                    "Level Files (Sound)|*Sound1.szs|" +
                     "All Level Files|*.szs",
                     InitialDirectory = currentDirectory,
                     FileName = _zone.LevelFileName

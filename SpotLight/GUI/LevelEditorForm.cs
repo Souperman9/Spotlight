@@ -439,11 +439,7 @@ namespace Spotlight
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog() { Filter =
-                $"{FileLevelOpenFilter.Split('|')[0]}|*Stage{SM3DWorldZone.MAP_SUFFIX};*Stage{SM3DWorldZone.COMBINED_SUFFIX};*Island{SM3DWorldZone.COMBINED_SUFFIX}|" +
-                $"{FileLevelOpenFilter.Split('|')[0]}|*{SM3DWorldZone.MAP_SUFFIX}|" +
-                $"{FileLevelOpenFilter.Split('|')[1]}|*{SM3DWorldZone.DESIGN_SUFFIX}|" +
-                $"{FileLevelOpenFilter.Split('|')[2]}|*{SM3DWorldZone.SOUND_SUFFIX}|" +
-                $"{FileLevelOpenFilter.Split('|')[3]}|*.szs",
+                $"{FileLevelOpenFilter.Split('|')[0]}|*.szs",
                 InitialDirectory = currentScene?.EditZone.Directory ?? (Program.ProjectPath.Equals("") ? Program.BaseStageDataPath : System.IO.Path.Combine(Program.ProjectPath, "StageData")) };
 
             SpotlightToolStripStatusLabel.Text = StatusWaitMessage;
@@ -1387,7 +1383,7 @@ Would you like to rebuild the database from your 3DW Files?";
         [Program.Localized]
         string StatusObjectPlaceNoticeMessage = "You have to place the object by clicking, when holding shift multiple objects can be placed";
         [Program.Localized]
-        string FileLevelOpenFilter = "Level Files (Map)|Level Files (Design)|Level Files (Sound)|All Level Files";
+        string FileLevelOpenFilter = "All Level Files";
         
         [Program.Localized]
         string DuplicateNothingMessage = "Can't duplicate nothing!";
