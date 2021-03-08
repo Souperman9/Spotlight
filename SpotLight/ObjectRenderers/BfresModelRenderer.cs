@@ -139,7 +139,7 @@ namespace Spotlight.ObjectRenderers
             if (cache.ContainsKey(ModelName))
             {
                 cache.Remove(ModelName);
-                Submit(ModelName, new MemoryStream(SARCExt.SARC.UnpackRamN(new MemoryStream(YAZ0.Decompress(Program.TryGetPathViaProject("ObjectData", ModelName+".szs")))).Files[ModelName+".bfres"]));
+                Submit(ModelName, new MemoryStream(SARCExt.SARC.UnpackRamN(new MemoryStream(YAZ0.Decompress(Program.TryGetPathViaProject("Model", ModelName+".szs")))).Files[ModelName+".bfres"]));
             }
         }
 
@@ -157,15 +157,15 @@ namespace Spotlight.ObjectRenderers
             {
                 bool loadTextures = !Properties.Settings.Default.DoNotLoadTextures;
 
-                if (loadTextures && textureArc != null && File.Exists(Program.TryGetPathViaProject("ObjectData", textureArc + ".szs")) && textureArc != "SingleModeBossSharedTextures" && textureArc != "SingleModeSharedTextures")
+                if (loadTextures && textureArc != null && File.Exists(Program.TryGetPathViaProject("Model", textureArc + ".szs")) && textureArc != "SingleModeBossSharedTextures" && textureArc != "SingleModeSharedTextures")
                 {
-                        SARCExt.SarcData objArc = SARCExt.SARC.UnpackRamN(YAZ0.Decompress(Program.TryGetPathViaProject("ObjectData", textureArc + ".szs")));
+                        SARCExt.SarcData objArc = SARCExt.SARC.UnpackRamN(YAZ0.Decompress(Program.TryGetPathViaProject("Model", textureArc + ".szs")));
 
                         if (!texArcCache.ContainsKey(textureArc))
                         {
                             Dictionary<string, int> arc = new Dictionary<string, int>();
                             texArcCache.Add(textureArc, arc);
-                            foreach (KeyValuePair<string, TextureShared> textureEntry in new ResFile(new MemoryStream(objArc.Files[textureArc + ".bfres"])).Textures)
+                            foreach (KeyValuePair<string, TextureShared> textureEntry in new ResFile(new MemoryStream(objArc.Files["Output.bfres"])).Textures)
                             {
                                 arc.Add(textureEntry.Key, UploadTexture(textureEntry.Value));
                             }
@@ -173,7 +173,7 @@ namespace Spotlight.ObjectRenderers
                 }
                 else if(loadTextures && textureArc != null)
                 {
-                    var filePath = Program.TryGetPathViaProject("ObjectData", textureArc);
+                    var filePath = Program.TryGetPathViaProject("Model", textureArc);
                     if(Directory.Exists(filePath))
                     {
                         if (!texArcCache.ContainsKey(textureArc))

@@ -174,11 +174,11 @@ namespace Spotlight
         /// Checks the given path to see if it is a valid SM3DW path
         /// </summary>
         /// <returns>true if the path is valid, false if it's invalid</returns>
-        public static bool IsGamePathValid(string path) => Directory.Exists(path + "\\ObjectData") && Directory.Exists(path + "\\StageData");
+        public static bool IsGamePathValid(string path) => Directory.Exists(path + "\\Model") && Directory.Exists(path + "\\Levels");
         public static void MakeGamePathValid(string path)
         {
-            Directory.CreateDirectory(path + "\\ObjectData");
-            Directory.CreateDirectory(path + "\\StageData");
+            Directory.CreateDirectory(path + "\\Model");
+            Directory.CreateDirectory(path + "\\Levels");
         }
 
         /// <summary>
@@ -208,11 +208,11 @@ namespace Spotlight
         /// <summary>
         /// Returns the ObjectData path
         /// </summary>
-        public static string BaseObjectDataPath => Properties.Settings.Default.GamePath + "\\ObjectData";
+        public static string BaseObjectDataPath => Properties.Settings.Default.GamePath + "\\Model";
         /// <summary>
         /// Returns the StageData path
         /// </summary>
-        public static string BaseStageDataPath => Properties.Settings.Default.GamePath + "\\StageData";
+        public static string BaseStageDataPath => Properties.Settings.Default.GamePath + "\\Levels\\Map";
 
         /// <summary>
         /// Returns the ObjectData path in the project directory

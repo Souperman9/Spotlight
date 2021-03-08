@@ -405,12 +405,12 @@ namespace Spotlight.EditorDrawables
             string mdlName = string.IsNullOrEmpty(ModelName) ? ObjectName : ModelName;
             if (BfresModelRenderer.Contains(mdlName))
                 return;
-            string Result = Program.TryGetPathViaProject("ObjectData", mdlName + ".szs");
+            string Result = Program.TryGetPathViaProject("Model", mdlName + ".szs");
             if (File.Exists(Result))
             {
                 SARCExt.SarcData objArc = SARCExt.SARC.UnpackRamN(YAZ0.Decompress(Result));
 
-                if (objArc.Files.ContainsKey(mdlName + ".bfres"))
+                if (objArc.Files.ContainsKey("Output.bfres"))
                 {
                     if (objArc.Files.ContainsKey("InitModel.byml"))
                     {
@@ -418,12 +418,12 @@ namespace Spotlight.EditorDrawables
 
                         if (initModel is Dictionary<string, dynamic>)
                         {
-                            BfresModelRenderer.Submit(mdlName, new MemoryStream(objArc.Files[mdlName + ".bfres"]),
+                            BfresModelRenderer.Submit(mdlName, new MemoryStream(objArc.Files["Output.bfres"]),
                             initModel.TryGetValue("TextureArc", out dynamic texArc) ? texArc : null);
                             return;
                         }
                     }
-                    BfresModelRenderer.Submit(mdlName, new MemoryStream(objArc.Files[mdlName + ".bfres"]), null);
+                    BfresModelRenderer.Submit(mdlName, new MemoryStream(objArc.Files["Output.bfres"]), null);
                 }
             }
         }
