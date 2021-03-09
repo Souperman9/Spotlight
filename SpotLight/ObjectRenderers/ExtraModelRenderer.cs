@@ -53,8 +53,8 @@ namespace Spotlight.ObjectRenderers
             #region AreaCubeBase
             List<int> indices = new List<int>();
 
-            float r = 5;
-            float t = 10;
+            float r = 0.75f;
+            float t = 1.5f;
             float b = 0;
 
             float[] data = new float[]

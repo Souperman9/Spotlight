@@ -51,7 +51,7 @@ namespace Spotlight.Level
             I3dWorldObject obj;
             bool loadLinks;
 
-            if((info.ClassName == "Area") || info.ObjectName.Contains("Area") && AreaModelNames.Contains(info.ModelName))
+            if((info.ClassName == "Area") || info.ObjectName.Contains("Area"))
                 obj = new AreaObject(in info, zone, out loadLinks);
             else if (info.PropertyEntries.TryGetValue("RailPoints", out DictionaryEntry railPointEntry) && railPointEntry.NodeType == ByamlFile.ByamlNodeType.Array) //at this point we can be sure it's a rail
                 obj = new Rail(in info, zone, out loadLinks);
@@ -105,11 +105,18 @@ namespace Spotlight.Level
                         }
                         else
                         {
-                            I3dWorldObject _obj = ParseObject(linked, zone, objectsByReference, out bool linkedAlreadyReferenced, linkedObjsByID, true);
-                            _obj.AddLinkDestination(link.Key, obj);
-                            links[link.Key].Add(_obj);
-                            if (zone != null && !linkedAlreadyReferenced)
-                                zone.LinkedObjects.Add(_obj);
+                            //I3dWorldObject _obj = ParseObject(linked, zone, objectsByReference, out bool linkedAlreadyReferenced, linkedObjsByID, true);
+                            //_obj.AddLinkDestination(link.Key, obj);
+                            //links[link.Key].Add(_obj);
+                            //if (zone != null && !linkedAlreadyReferenced)
+                            //    zone.LinkedObjects.Add(_obj
+                            foreach (DictionaryEntry names in linked.IterDictionary())
+                            {
+                                if (names.Key == "DestUnitId") continue;
+                            }
+                            
+
+
                         }
                     }
                 }

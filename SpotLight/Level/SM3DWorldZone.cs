@@ -571,15 +571,23 @@ namespace Spotlight.Level
 
                 foreach (ArrayEntry obj in entry.IterArray())
                 {
-                    I3dWorldObject _obj = LevelIO.ParseObject(obj, this, objectsByReference, out bool alreadyReferenced, Properties.Settings.Default.UniqueIDs ? linkedObjsByID : null);
-                    if (!alreadyReferenced)
+                    try
                     {
+                        I3dWorldObject _obj = LevelIO.ParseObject(obj, this, objectsByReference, out bool alreadyReferenced, Properties.Settings.Default.UniqueIDs ? linkedObjsByID : null);
+                        if (!alreadyReferenced)
+                        {
 #if ODYSSEY
                             _obj.ScenarioBitField |= (ushort)(1 << scenario.Index);
                             if (!ObjLists[prefix + entry.Key].Contains(_obj))
 #endif
-                                ObjLists[prefix + entry.Key].Add(_obj);
+                            ObjLists[prefix + entry.Key].Add(_obj);
+                        }
                     }
+                    catch
+                    {
+                        break;
+                    }
+                    
 
                 }
             }

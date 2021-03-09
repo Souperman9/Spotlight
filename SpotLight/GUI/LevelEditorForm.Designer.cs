@@ -265,7 +265,7 @@
             this.LevelGLControlModern.TabIndex = 0;
             this.LevelGLControlModern.VSync = false;
             this.LevelGLControlModern.ZFar = 32000F;
-            this.LevelGLControlModern.ZNear = 1.5F;
+            this.LevelGLControlModern.ZNear = 0.0015F;
             this.LevelGLControlModern.Load += new System.EventHandler(this.LevelGLControlModern_Load);
             // 
             // SpotlightMenuStrip

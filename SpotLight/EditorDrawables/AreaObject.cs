@@ -72,8 +72,11 @@ namespace Spotlight.EditorDrawables
             ID = info.ID;
             if (zone != null)
                 zone.SubmitRailID(ID);
-
-            ModelName = info.ModelName;
+            if (info.ObjectName.Contains("Sphere"))
+            {
+                ModelName = "AreaSphere";
+            }
+            else ModelName = "AreaCubeBase";
             ClassName = info.ObjectName; //...yep
 
             comment = info.Comment;
@@ -491,12 +494,12 @@ namespace Spotlight.EditorDrawables
 #if ODYSSEY
                     case "CameraArea2D":
 #endif
-                    case "CameraArea": //red
+                    case "GeneralArea": //red
                         colorA = new Vector4(1, 0, 0, 1);
                         colorB = new Vector4(1, 0, 0, 1);
                         break;
 
-                    case "GraphicsArea": //yellow-orange
+                    case "StageArea": //yellow-orange
                         colorA = new Vector4(1, 0.5f, 0, 1);
                         colorB = new Vector4(1, 1, 0, 1);
                         break;
@@ -504,7 +507,7 @@ namespace Spotlight.EditorDrawables
                     case "HackerCheckKeepOnArea":
 #endif
                     case "SwitchOnArea":
-                    case "SwitchKeepOnArea": //light blue
+                    case "SearchableArea": //light blue
                         colorA = new Vector4(0, 1, 1, 1);
                         colorB = new Vector4(0, 1, 1, 1);
                         break;

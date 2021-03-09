@@ -119,8 +119,15 @@ namespace Spotlight.ObjectRenderers
                     break;
 
                 default:
+                    if (className.Contains("Switch")) 
+                    {
+                        uvTopLeft = new Vector2(0, 0);
+                        break;
+                    }
+                    else
                     return false;
             }
+            
 
             if (pass != Pass.OPAQUE)
             {
