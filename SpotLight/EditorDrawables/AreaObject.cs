@@ -512,7 +512,7 @@ namespace Spotlight.EditorDrawables
                         colorB = new Vector4(0, 1, 1, 1);
                         break;
 
-                    case "ViewCtrlArea": //grey
+                    case "PaintableArea": //grey
                         colorA = new Vector4(0.5f ,0.5f ,0.5f , 1);
                         colorB = new Vector4(0.75f, 0.75f, 0.75f, 1);
                         break;
