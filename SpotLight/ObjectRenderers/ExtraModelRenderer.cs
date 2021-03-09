@@ -53,8 +53,8 @@ namespace Spotlight.ObjectRenderers
             #region AreaCubeBase
             List<int> indices = new List<int>();
 
-            float r = 0.75f;
-            float t = 1.5f;
+            float r = 0.5f;
+            float t = 0.1f;
             float b = 0;
 
             float[] data = new float[]
@@ -372,7 +372,7 @@ namespace Spotlight.ObjectRenderers
             int sphereSubDivisionsU = 16;
             int sphereSubDivisionsV = 8;
 
-            r = 5f;
+            r = 0.5f;
 
             data = new float[(sphereSubDivisionsU * (sphereSubDivisionsV - 1) + 2) * 7];
 
