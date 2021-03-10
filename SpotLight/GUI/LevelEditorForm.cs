@@ -440,7 +440,7 @@ namespace Spotlight
         {
             OpenFileDialog ofd = new OpenFileDialog() { Filter =
                 $"{FileLevelOpenFilter.Split('|')[0]}|*.szs",
-                InitialDirectory = currentScene?.EditZone.Directory ?? (Program.ProjectPath.Equals("") ? Program.BaseStageDataPath : System.IO.Path.Combine(Program.ProjectPath, "Levels\\Map")) };
+                InitialDirectory = currentScene?.EditZone.Directory ?? (Program.ProjectPath.Equals("") ? Program.BaseStageDataPath : System.IO.Path.Combine(Program.ProjectPath, "Map")) };
 
             SpotlightToolStripStatusLabel.Text = StatusWaitMessage;
 
@@ -494,9 +494,9 @@ namespace Spotlight
                 SpotlightToolStripStatusLabel.Text = StatusOpenCancelledMessage;
                 return;
             }
-            if (TryOpenZoneWithLoadingBar(Program.TryGetPathViaProject("Levels\\Map", $"{LPSF.levelname}{SM3DWorldZone.MAP_SUFFIX}"), out var zone))
+            if (TryOpenZoneWithLoadingBar(Program.TryGetPathViaProject("Map", $"{LPSF.levelname}{SM3DWorldZone.MAP_SUFFIX}"), out var zone))
                 OpenZone(zone);
-            else if (TryOpenZoneWithLoadingBar(Program.TryGetPathViaProject("Levels\\Map", $"{LPSF.levelname}{SM3DWorldZone.COMBINED_SUFFIX}"), out zone))
+            else if (TryOpenZoneWithLoadingBar(Program.TryGetPathViaProject("Map", $"{LPSF.levelname}{SM3DWorldZone.COMBINED_SUFFIX}"), out zone))
                 OpenZone(zone);
         }
 
@@ -1332,7 +1332,7 @@ namespace Spotlight
         string WelcomeMessageText =
 @"Welcome to Spotlight!
 
-In order to use this program, you will need the folders ""Levels"" and ""Model"" from Splatoon
+In order to use this program, you will need the folders ""Map"" and ""Model"" from Splatoon
 
 Please select the folder than contains these folders";
         [Program.Localized]

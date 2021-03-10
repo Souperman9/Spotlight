@@ -422,6 +422,30 @@ namespace Spotlight.EditorDrawables
                     BfresModelRenderer.Submit(mdlName, new MemoryStream(objArc.Files["Output.bfres"]), null);
                 }
             }
+            else
+            {
+                Result = Program.TryGetPathViaProject("Model", mdlName + ".Nin_NX_NVN" + ".szs");
+                if (File.Exists(Result))
+                {
+                    SARCExt.SarcData objArc = SARCExt.SARC.UnpackRamN(YAZ0.Decompress(Result));
+
+                    if (objArc.Files.ContainsKey("output.bfres"))
+                    {
+                        if (objArc.Files.ContainsKey("InitModel.byml"))
+                        {
+                            dynamic initModel = ByamlFile.FastLoadN(new MemoryStream(objArc.Files["InitModel.byml"]), false, ByteOrder.BigEndian).RootNode;
+
+                            if (initModel is Dictionary<string, dynamic>)
+                            {
+                                BfresModelRenderer.Submit(mdlName, new MemoryStream(objArc.Files["output.bfres"]),
+                                initModel.TryGetValue("TextureArc", out dynamic texArc) ? texArc : null);
+                                return;
+                            }
+                        }
+                        BfresModelRenderer.Submit(mdlName, new MemoryStream(objArc.Files["output.bfres"]), null);
+                    }
+                }
+            }
         }
 
         public override bool TrySetupObjectUIControl(EditorSceneBase scene, ObjectUIControl objectUIControl)

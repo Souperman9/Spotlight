@@ -110,7 +110,7 @@ namespace Spotlight
         {
             ZonesListBox.Items.Clear();
 
-            foreach (string filePath in Directory.EnumerateFiles(Program.ProjectPath.Equals("") ? Program.BaseStageDataPath: Path.Combine(Program.ProjectPath, "Levels\\Map")))
+            foreach (string filePath in Directory.EnumerateFiles(Program.ProjectPath.Equals("") ? Program.BaseStageDataPath: Path.Combine(Program.ProjectPath, "Map")))
             {
                 if (!filePath.EndsWith(SM3DWorldZone.MAP_SUFFIX) && !filePath.EndsWith(SM3DWorldZone.COMBINED_SUFFIX))
                     continue;
