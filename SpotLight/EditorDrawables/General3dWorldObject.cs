@@ -77,8 +77,6 @@ namespace Spotlight.EditorDrawables
 
         [PropertyCapture.Undoable]
         public Vector3 DisplayTranslation { get; set; }
-        [PropertyCapture.Undoable]
-        public string DisplayName { get; set; }
 
         public Dictionary<string, List<I3dWorldObject>> Links { get; set; } = null;
         public Dictionary<string, dynamic> Properties { get; set; } = new Dictionary<string, dynamic>();
@@ -107,7 +105,6 @@ namespace Spotlight.EditorDrawables
             ClassName = info.ClassName;
             Layer = info.Layer;
             DisplayTranslation = info.DisplayTranslation;
-            DisplayName = info.DisplayName;
 
             comment = info.Comment;
 
@@ -130,7 +127,7 @@ namespace Spotlight.EditorDrawables
         public General3dWorldObject(
             Vector3 pos, Vector3 rot, Vector3 scale, 
             string iD, string objectName, string modelName, string className, 
-            Vector3 displayTranslation, string displayName,
+            Vector3 displayTranslation,
             Dictionary<string, List<I3dWorldObject>> links, Dictionary<string, dynamic> properties, SM3DWorldZone zone)
             : base(pos,rot,scale)
         {
@@ -139,7 +136,6 @@ namespace Spotlight.EditorDrawables
             ModelName = modelName;
             ClassName = className;
             DisplayTranslation = displayTranslation;
-            DisplayName = displayName;
             Links = links;
             Properties = properties;
 
@@ -267,7 +263,7 @@ namespace Spotlight.EditorDrawables
                 ObjectUtils.TransformedPosition(Position, zoneToZoneTransform),
                 ObjectUtils.TransformedRotation(Rotation, zoneToZoneTransform),
 
-                Scale, destZone?.NextObjID(), ObjectName, ModelName, ClassName, DisplayTranslation, DisplayName,
+                Scale, destZone?.NextObjID(), ObjectName, ModelName, ClassName, DisplayTranslation,
 
                 ObjectUtils.DuplicateLinks(Links),
                 ObjectUtils.DuplicateProperties(Properties),
@@ -637,7 +633,6 @@ namespace Spotlight.EditorDrawables
                     obj.DisplayTranslation = control.Vector3Input(obj.DisplayTranslation, "Display Position", 0.125f, 2);
 
                 //TODO
-                obj.DisplayName = control.DropDownTextInput("Display Name", obj.DisplayName, Array.Empty<string>());
             }
 
             public void OnValueChangeStart()

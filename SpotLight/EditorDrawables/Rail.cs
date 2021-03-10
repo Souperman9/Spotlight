@@ -55,23 +55,23 @@ namespace Spotlight.EditorDrawables
                     if (entry.Key == "Translate")
                     {
                         pos = new Vector3(
-                            _data["X"] / 100f,
-                            _data["Y"] / 100f,
-                            _data["Z"] / 100f
+                            _data["X"] / 10f,
+                            _data["Y"] / 10f,
+                            _data["Z"] / 10f
                         );
                     }
                     else if (entry.Key == "ControlPoints")
                     {
                         cp1 = new Vector3(
-                            _data[0]["X"] / 100f,
-                            _data[0]["Y"] / 100f,
-                            _data[0]["Z"] / 100f
+                            _data[0]["X"] / 10f,
+                            _data[0]["Y"] / 10f,
+                            _data[0]["Z"] / 10f
                         );
 
                         cp2 = new Vector3(
-                            _data[1]["X"] / 100f,
-                            _data[1]["Y"] / 100f,
-                            _data[1]["Z"] / 100f
+                            _data[1]["X"] / 10f,
+                            _data[1]["Y"] / 10f,
+                            _data[1]["Z"] / 10f
                         );
                     }
                     else
@@ -201,8 +201,8 @@ namespace Spotlight.EditorDrawables
 
                 pointNode.AddDynamicValue("ControlPoints", new List<dynamic>()
                 {
-                    LevelIO.Vector3ToDict(point.ControlPoint1 + point.Position, 100f),
-                    LevelIO.Vector3ToDict(point.ControlPoint2 + point.Position, 100f)
+                    LevelIO.Vector3ToDict(point.ControlPoint1 + point.Position, 10f),
+                    LevelIO.Vector3ToDict(point.ControlPoint2 + point.Position, 10f)
                 });
 
                 pointNode.AddDynamicValue("Id", $"{ID}/{i}");
@@ -244,7 +244,7 @@ namespace Spotlight.EditorDrawables
 
             objNode.AddDynamicValue("Rotate", LevelIO.Vector3ToDict(Vector3.Zero), true);
             objNode.AddDynamicValue("Scale", LevelIO.Vector3ToDict(Vector3.One), true);
-            objNode.AddDynamicValue("Translate", LevelIO.Vector3ToDict(PathPoints[0].Position, 100f), true);
+            objNode.AddDynamicValue("Translate", LevelIO.Vector3ToDict(PathPoints[0].Position, 10f), true);
 
             objNode.AddDynamicValue("UnitConfig", ObjectUtils.CreateUnitConfig(ClassName), true);
 

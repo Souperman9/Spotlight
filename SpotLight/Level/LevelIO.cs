@@ -110,7 +110,7 @@ namespace Spotlight.Level
                             //links[link.Key].Add(_obj);
                             //if (zone != null && !linkedAlreadyReferenced)
                             //    zone.LinkedObjects.Add(_obj
-                            foreach (DictionaryEntry names in linked.IterDictionary())
+                            foreach (DictionaryEntry names in linked.IterDictionary()) //leaving this for later
                             {
                                 if (names.Key == "DestUnitId") continue;
                             }
@@ -301,9 +301,9 @@ namespace Spotlight.Level
                     case "Translate":
                         _data = entry.Parse();
                         info.Position = new Vector3(
-                            _data["X"] / 100f,
-                            _data["Y"] / 100f,
-                            _data["Z"] / 100f
+                            _data["X"] / 10f,
+                            _data["Y"] / 10f,
+                            _data["Z"] / 10f
                         );
                         break;
                     case "UnitConfigName":

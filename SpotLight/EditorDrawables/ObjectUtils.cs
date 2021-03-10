@@ -14,7 +14,6 @@ namespace Spotlight.EditorDrawables
     {
         public static Dictionary<string, dynamic> CreateUnitConfig(General3dWorldObject obj) => new Dictionary<string, dynamic>
         {
-            ["DisplayName"] = obj.DisplayName,
             ["DisplayTranslate"] = LevelIO.Vector3ToDict(obj.DisplayTranslation, 100f),
             ["GenerateCategory"] = "",
             ["ParameterConfigName"] = obj.ClassName,

@@ -483,9 +483,9 @@ namespace Spotlight.ObjectRenderers
 
 
                         //write vertex data into vertex buffer
-                        bufferData[_i] = pos.X * 0.01f;
-                        bufferData[_i + 1] = pos.Y * 0.01f;
-                        bufferData[_i + 2] = pos.Z * 0.01f;
+                        bufferData[_i] = pos.X / 10f;
+                        bufferData[_i + 1] = pos.Y / 10f;
+                        bufferData[_i + 2] = pos.Z / 10f;
                         if (vec4uv0.Length>0)
                         {
                             bufferData[_i + 3] = uv0.X;
